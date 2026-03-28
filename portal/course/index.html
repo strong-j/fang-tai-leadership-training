@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>管理者的角色认知</title>
+    <script type="module" crossorigin src="./assets/index-CRTE3Ofo.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DmTUFpWH.css">
+    <style>
+      /* 返回门户首页按钮 */
+      .back-to-portal {
+        position: fixed;
+        top: 80px;
+        left: 20px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: white;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        text-decoration: none;
+        color: #1d1d67;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .back-to-portal:hover {
+        background: #1d1d67;
+        color: white;
+        transform: translateY(-2px);
+      }
+      .back-to-portal svg {
+        width: 18px;
+        height: 18px;
+      }
+      
+      /* 自我管理部分连接线 */
+      .self-management-line {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 2px;
+        height: 80px;
+        background: linear-gradient(to bottom, rgba(29,29,103,0.2), rgba(233,66,58,0.3));
+        z-index: 5;
+      }
+      
+      .self-management-line::before {
+        content: '';
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(to bottom, rgba(233,66,58,0.3), rgba(29,29,103,0.2));
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 返回门户首页按钮 -->
+    <a href="../index.html" class="back-to-portal">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      返回首页
+    </a>
+    <div id="root"></div>
+    <script>
+      // 添加自我管理部分连接线
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const svgContainer = document.querySelector('svg[viewBox="0 0 800 500"]');
+          if (svgContainer) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', '400');
+            line.setAttribute('y1', '250');
+            line.setAttribute('x2', '400');
+            line.setAttribute('y2', '80');
+            line.setAttribute('stroke', 'url(#line-gradient)');
+            line.setAttribute('stroke-width', '2');
+            line.setAttribute('stroke-dasharray', '5 5');
+            line.setAttribute('opacity', '0.3');
+            svgContainer.insertBefore(line, svgContainer.firstChild);
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
