@@ -52,9 +52,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1.5rem 0;
             transition: var(--transition);
-            background: transparent;
+            background: var(--white);
         }
 
         .navbar.scrolled {
@@ -67,8 +67,10 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            gap: 3rem;
+            padding: 0 2rem;
         }
 
         .nav-brand {
@@ -76,7 +78,7 @@
             align-items: center;
             gap: 0.75rem;
             text-decoration: none;
-            color: var(--white);
+            color: var(--primary);
         }
 
         .navbar.scrolled .nav-brand {
@@ -102,7 +104,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--white);
+            color: var(--text-dark);
             font-weight: 500;
             transition: var(--transition);
             position: relative;
@@ -748,12 +750,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
-                    <path d="M12 20L20 12L28 20L20 28L12 20Z" fill="currentColor"/>
-                    <circle cx="20" cy="20" r="4" fill="currentColor"/>
-                </svg>
-                <span>方太领导力</span>
+                <img src="asset/logo.jpeg" alt="方太领导力" style="height: 60px;">
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">首页</a></li>
@@ -1028,14 +1025,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-brand">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
-                    <path d="M12 20L20 12L28 20L20 28L12 20Z" fill="currentColor"/>
-                    <circle cx="20" cy="20" r="4" fill="currentColor"/>
-                </svg>
-                <span>方太学校</span>
-            </div>
+
             <div class="footer-links">
                 <a href="index.html">首页</a>
                 <a href="course/index.html">课程学习</a>
