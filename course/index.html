@@ -1,93 +1,1518 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>管理者的角色认知</title>
-    <script type="module" crossorigin src="./assets/index-CRTE3Ofo.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DmTUFpWH.css">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者的角色认知 - 方太学校</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-      /* 返回门户首页按钮 */
-      .back-to-portal {
-        position: fixed;
-        top: 80px;
-        left: 20px;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        background: white;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        text-decoration: none;
-        color: #1d1d67;
-        font-size: 14px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-      .back-to-portal:hover {
-        background: #1d1d67;
-        color: white;
-        transform: translateY(-2px);
-      }
-      .back-to-portal svg {
-        width: 18px;
-        height: 18px;
-      }
-      
-      /* 自我管理部分连接线 */
-      .self-management-line {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 2px;
-        height: 80px;
-        background: linear-gradient(to bottom, rgba(29,29,103,0.2), rgba(233,66,58,0.3));
-        z-index: 5;
-      }
-      
-      .self-management-line::before {
-        content: '';
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 40px;
-        background: linear-gradient(to bottom, rgba(233,66,58,0.3), rgba(29,29,103,0.2));
-      }
+        :root {
+            --primary: #C75C3A;
+            --primary-dark: #A84B2F;
+            --secondary: #1A365D;
+            --accent: #D4A574;
+            --bg-light: #FAFAF8;
+            --bg-dark: #1E293B;
+            --text-dark: #2D3748;
+            --text-gray: #718096;
+            --text-light: #A0AEC0;
+            --white: #FFFFFF;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: var(--transition);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .nav-brand svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-brand span {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            background: var(--primary);
+            color: var(--white) !important;
+        }
+
+        /* Course Header */
+        .course-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #2D4A6F 50%, #3D5A7F 100%);
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .course-header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .course-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-family: 'Ma Shan Zheng', cursive;
+        }
+
+        .course-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+        }
+
+        .course-meta-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .course-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .course-meta-item svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+        }
+
+        /* Layout */
+        .course-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 3rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .toc-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 0.25rem;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .toc-link:hover {
+            color: var(--primary);
+            background: var(--bg-light);
+        }
+
+        .toc-link.active {
+            color: var(--primary);
+            background: rgba(199, 92, 58, 0.1);
+            border-left-color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Course Content */
+        .course-content {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chapter {
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chapter:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .chapter-number {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .chapter-intro {
+            background: linear-gradient(135deg, rgba(199, 92, 58, 0.1), rgba(212, 165, 116, 0.1));
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .chapter-intro p {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 1.35rem;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .subsection-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        /* Lists */
+        .content-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .content-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .content-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .content-list.accent li::before {
+            background: var(--accent);
+        }
+
+        /* Sub Lists */
+        .sub-list {
+            list-style: none;
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+        }
+
+        .sub-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+        }
+
+        .sub-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--text-light);
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        /* Tables */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .content-table th {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .content-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .content-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        /* Stage Cards */
+        .stage-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stage-card.secondary {
+            border-left-color: var(--secondary);
+        }
+
+        .stage-card.accent {
+            border-left-color: var(--accent);
+        }
+
+        .stage-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .stage-card.secondary .stage-title {
+            color: var(--secondary);
+        }
+
+        .stage-card.accent .stage-title {
+            color: var(--accent);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box .title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box .description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Key Point */
+        .key-point {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(199, 92, 58, 0.05);
+            border-radius: var(--radius-sm);
+            margin: 1rem 0;
+        }
+
+        .key-point-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .key-point-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--white);
+        }
+
+        .key-point-content {
+            flex: 1;
+        }
+
+        .key-point-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .key-point-text {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+        }
+
+        /* Progress Path */
+        .progress-path {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .progress-path::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ddd;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .progress-step {
+            position: relative;
+            z-index: 1;
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            border: 2px solid #ddd;
+            transition: var(--transition);
+        }
+
+        .progress-step.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, var(--secondary), #2D4A6F);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-top: 3rem;
+            color: var(--white);
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .summary-title svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--accent);
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.95;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--white);
+        }
+
+        .footer-brand span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-tagline {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .course-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: relative;
+                top: 0;
+                margin-bottom: 2rem;
+            }
+
+            .toc-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2rem;
+            }
+
+            .course-header {
+                padding: 6rem 1rem 2rem;
+            }
+
+            .course-content {
+                padding: 1.5rem;
+            }
+
+            .toc-list {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-path {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .progress-path::before {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 1rem;
+                box-shadow: var(--shadow-md);
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- 返回门户首页按钮 -->
-    <a href="../index.html" class="back-to-portal">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-      </svg>
-      返回首页
-    </a>
-    <div id="root"></div>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 20L20 12L28 20L20 28L12 20Z" fill="currentColor"/>
+                    <circle cx="20" cy="20" r="4" fill="currentColor"/>
+                </svg>
+                <span>方太领导力</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="index.html" class="active">课程学习</a></li>
+                <li><a href="../index.html#courses">全部课程</a></li>
+                <li><a href="../index.html#about">关于我们</a></li>
+                <li><a href="../index.html" class="back-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    返回首页
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <header class="course-header">
+        <div class="course-header-content">
+            <span class="course-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                壹 · 已发布
+            </span>
+            <h1 class="course-title">管理者的角色认知</h1>
+            <p class="course-subtitle">从管理自己到管理组织——管理者的进阶之路</p>
+            <p class="course-description">
+                探索管理者在不同发展阶段的核心角色，掌握从个人贡献者到组织领导者的转型智慧。
+                本课程涵盖管理者的三大角色定位、五大作风、核心责任及自我管理方法。
+            </p>
+            <div class="course-meta-row">
+                <div class="course-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    10 节课
+                </div>
+                <div class="course-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    约 2 小时
+                </div>
+                <div class="course-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22,4 12,14.01 9,11.01"/>
+                    </svg>
+                    初级 · 角色认知
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="course-layout">
+        <!-- Course Content -->
+        <article class="course-content">
+            <!-- Chapter 1 -->
+            <section class="chapter animate-on-scroll" id="chapter1">
+                <div class="chapter-number">一</div>
+                <h2 class="chapter-title">不同发展阶段管理者的角色认知</h2>
+
+                <div class="chapter-intro">
+                    <p>管理者在不同发展阶段需要承担不同的角色，从"做事的人"转变为"通过他人完成工作的人"。这个转变过程需要经历三个关键跃升阶段。</p>
+                </div>
+
+                <div class="stage-card">
+                    <h3 class="stage-title">壹：从管理自己到管理他人</h3>
+                    <p><strong>阶段：</strong>储备 → 新任 → 在岗</p>
+                    <p><strong>核心转变：</strong>从"做事的人"转变为"通过他人完成工作的人"</p>
+                    <p><strong>关键能力：</strong></p>
+                    <ul class="content-list">
+                        <li>辅导、沟通、计划</li>
+                        <li>目标分解、反馈、任务分配</li>
+                    </ul>
+                </div>
+
+                <div class="stage-card secondary">
+                    <h3 class="stage-title">贰：从管理他人到管理管理者</h3>
+                    <p><strong>阶段：</strong>储备 → 新任 → 在岗</p>
+                    <p><strong>核心转变：</strong>从"直接带团队"升级为"通过初级经理人达成组织目标"</p>
+                    <p><strong>关键能力：</strong></p>
+                    <ul class="content-list">
+                        <li>培养下属经理、跨团队协同</li>
+                        <li>评估发展、资源整合、战略对齐</li>
+                    </ul>
+                </div>
+
+                <div class="stage-card accent">
+                    <h3 class="stage-title">叁：从管理管理者到管理职能/部门</h3>
+                    <p><strong>阶段：</strong>储备 → 新任 → 在岗</p>
+                    <p><strong>核心转变：</strong>从"业务管理者"转变为"组织能力建设者"，兼顾专业深度与组织广度</p>
+                    <p><strong>关键能力：</strong></p>
+                    <ul class="content-list">
+                        <li>战略对齐、体系建设、人才发展</li>
+                        <li>跨部门影响、制度设计、组织变革推动</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <div class="title">底层逻辑</div>
+                    <div class="description">
+                        <strong>人</strong>（管理人群的层次、类型、结构等）<br>
+                        <strong>事</strong>（管理事务的复杂性、自主性、颗粒度等）
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 2 -->
+            <section class="chapter animate-on-scroll" id="chapter2">
+                <div class="chapter-number">二</div>
+                <h2 class="chapter-title">管理者的核心素养</h2>
+
+                <div class="key-point">
+                    <div class="key-point-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="key-point-content">
+                        <div class="key-point-title">管理者的底层是品德</div>
+                        <div class="key-point-text">一句话描述管理者的状态：个人及团队的成长，学习的期待及满足</div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">什么样的人适合做管理者？</h3>
+                <div class="quote-box">
+                    "领导即服务，自驱力"
+                </div>
+                <ul class="content-list">
+                    <li>对自己有要求</li>
+                    <li>希望影响别人、帮助别人，并以此为乐事</li>
+                </ul>
+
+                <h3 class="subsection-title">发心</h3>
+                <p>让人意识到最好的状态及最理想的情况</p>
+
+                <h3 class="subsection-title">为什么做管理者的时候不喜悦？</h3>
+                <div class="quote-box">
+                    "我们总是把胜利的希望寄希望于别人的改变"
+                </div>
+
+                <h3 class="subsection-title">领导者要成为自己幸福人生的主人翁</h3>
+                <p>管理者首先要学会管理好自己，才能更好地影响和带领团队。</p>
+            </section>
+
+            <!-- Chapter 3 -->
+            <section class="chapter animate-on-scroll" id="chapter3">
+                <div class="chapter-number">三</div>
+                <h2 class="chapter-title">管理者的进阶路径</h2>
+
+                <p>管理者的成长是一个从基础到卓越的持续跃升过程：</p>
+
+                <div class="progress-path">
+                    <span class="progress-step active">管理自己</span>
+                    <span class="progress-step active">管理他人</span>
+                    <span class="progress-step active">管理管理者</span>
+                    <span class="progress-step">管理职能/体系</span>
+                    <span class="progress-step">组织能力建设</span>
+                </div>
+
+                <p>每一个阶段的跃升都需要管理者具备相应的能力和素质，同时也需要承担更大的责任和挑战。</p>
+            </section>
+
+            <!-- Chapter 4 -->
+            <section class="chapter animate-on-scroll" id="chapter4">
+                <div class="chapter-number">四</div>
+                <h2 class="chapter-title">管理者的三大角色定位：君、亲、师</h2>
+
+                <p>中国传统管理智慧中，管理者需要同时扮演好"君、亲、师"三种角色，这是实现有效管理的关键。</p>
+
+                <div class="stage-card">
+                    <h3 class="stage-title">1. 作之君（领导）</h3>
+                    <ul class="content-list">
+                        <li>指明方向</li>
+                        <li>战略拆解</li>
+                    </ul>
+                </div>
+
+                <div class="stage-card secondary">
+                    <h3 class="stage-title">2. 作之亲（关爱）</h3>
+                    <ul class="content-list">
+                        <li>亲而不密的关系构建</li>
+                        <li>经理对员工要认真地关心（身心健康、持续成长）</li>
+                        <li>但不要保持那么亲密的关系，越亲密越容易导致对人不对事</li>
+                        <li>千万不要拿员工的一针一线（"拿人手短，吃人嘴软"）</li>
+                        <li>日常交际时不要显得关系过于亲密（如一起喝醉）</li>
+                    </ul>
+                </div>
+
+                <div class="stage-card accent">
+                    <h3 class="stage-title">3. 作之师（教导）</h3>
+                    <ul class="content-list">
+                        <li>长善救失：多鼓励，少指责，将确认、鼓励与表扬显性化</li>
+                        <li>让员工从不明白到明白</li>
+                        <li>批评、奖励的发心只有一个：让他好好奋斗</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Chapter 5 -->
+            <section class="chapter animate-on-scroll" id="chapter5">
+                <div class="chapter-number">五</div>
+                <h2 class="chapter-title">管理者的三大作风</h2>
+
+                <p>管理者的作风直接影响团队的文化和氛围，需要践行以下三大作风：</p>
+
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">作风</th>
+                            <th>内涵</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>密切联系顾客</strong></td>
+                            <td>去关爱、去教育、去洞察</td>
+                        </tr>
+                        <tr>
+                            <td><strong>坚持深入现场</strong></td>
+                            <td>去现场的意义在于发现问题、解决问题</td>
+                        </tr>
+                        <tr>
+                            <td><strong>反省与唤醒</strong></td>
+                            <td>自我反思，唤醒团队</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Chapter 6 -->
+            <section class="chapter animate-on-scroll" id="chapter6">
+                <div class="chapter-number">六</div>
+                <h2 class="chapter-title">管理者的四大核心责任</h2>
+
+                <div class="highlight-box">
+                    <div class="title">责任链条</div>
+                    <div class="description">
+                        抓组织能量 → 抓组织奋斗精神 → 抓组织活力 → 抓业务目标
+                    </div>
+                </div>
+
+                <p><strong>核心理念：</strong></p>
+                <p>不能因丁目指，有能量、奋斗精神，能发力</p>
+
+                <ul class="content-list">
+                    <li><strong>抓组织能量：</strong>保持团队的活力和积极性</li>
+                    <li><strong>抓组织奋斗精神：</strong>激发团队的拼搏意识</li>
+                    <li><strong>抓组织活力：</strong>保持组织的创新和适应能力</li>
+                    <li><strong>抓业务目标：</strong>达成组织的核心业绩</li>
+                </ul>
+            </section>
+
+            <!-- Chapter 7 -->
+            <section class="chapter animate-on-scroll" id="chapter7">
+                <div class="chapter-number">七</div>
+                <h2 class="chapter-title">责任跃升的三个支撑</h2>
+
+                <p>管理者要实现责任的跃升，需要在以下三个方面不断提升：</p>
+
+                <h3 class="section-title">1. 沟通跃升</h3>
+                <p><strong>挑战：</strong>从无损沟通到有损沟通</p>
+
+                <p><strong>优秀沟通者的四个角色：</strong></p>
+                <ul class="content-list">
+                    <li>建设性意见供给方</li>
+                    <li>共识性观点输出方</li>
+                    <li>明确性内容归纳方</li>
+                    <li>良善性人设构建方</li>
+                </ul>
+
+                <p><strong>沟通要点：</strong>及时、真实、细节，关键字：走心 & 入心</p>
+                <p><strong>长善的形式与语言：</strong>设问 → 确认 → 鼓励</p>
+
+                <h3 class="section-title">2. 关系跃升</h3>
+                <p><strong>核心转变：</strong>从"常伴左右"的朋友到"上下同欲"的战友</p>
+
+                <p><strong>核心原则：</strong></p>
+                <ul class="content-list">
+                    <li>对事不对人</li>
+                    <li>"战友"关系，亲而不密</li>
+                    <li>不拿一针一线，不要让关系显得过于亲密</li>
+                    <li>永远不要跟团队成员喝醉，保持清醒</li>
+                </ul>
+
+                <h3 class="section-title">3. 自我跃升</h3>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">维度</th>
+                            <th>要点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>觉知自我，修炼自我</strong></td>
+                            <td>觉察—处理，五个一的持续修炼</td>
+                        </tr>
+                        <tr>
+                            <td><strong>关注全局，刻意练习</strong></td>
+                            <td>从全局看问题，学会算大账</td>
+                        </tr>
+                        <tr>
+                            <td><strong>担当突破小我</strong></td>
+                            <td>控制小我，影响空间更大</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Chapter 8 -->
+            <section class="chapter animate-on-scroll" id="chapter8">
+                <div class="chapter-number">八</div>
+                <h2 class="chapter-title">关键理念与金句</h2>
+
+                <p>以下是管理实践中的关键理念和智慧金句：</p>
+
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">主题</th>
+                            <th>金句/理念</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>教练理念</strong></td>
+                            <td>"教练是为了培养世界冠军而不是做世界冠军，当然他自己最好是世界冠军"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>组织视野</strong></td>
+                            <td>组织不仅要眼睛向内，而且要眼睛向外，要集优势，发现机会</td>
+                        </tr>
+                        <tr>
+                            <td><strong>能力观</strong></td>
+                            <td>有人提升能力，有人负责能力，能力强的不一定胜利</td>
+                        </tr>
+                        <tr>
+                            <td><strong>激励观</strong></td>
+                            <td>不明善恶，不知激励是什么；没有善恶，无处进行激励</td>
+                        </tr>
+                        <tr>
+                            <td><strong>坚持观</strong></td>
+                            <td>坚持的坍塌是从冷漠开始的，点燃对目标的热情</td>
+                        </tr>
+                        <tr>
+                            <td><strong>成功观</strong></td>
+                            <td>能够成功的最小行动单元</td>
+                        </tr>
+                        <tr>
+                            <td><strong>用人观</strong></td>
+                            <td>用师者王，用友者霸，用徒者亡</td>
+                        </tr>
+                        <tr>
+                            <td><strong>利他观</strong></td>
+                            <td>利他是种能力</td>
+                        </tr>
+                        <tr>
+                            <td><strong>管理观</strong></td>
+                            <td>管理他人不可为所欲为，要按照组织认可的方式取得胜利</td>
+                        </tr>
+                        <tr>
+                            <td><strong>向上管理</strong></td>
+                            <td>养成习惯：向上汇报，遇到问题及时反馈，主动向上汇报</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Chapter 9 -->
+            <section class="chapter animate-on-scroll" id="chapter9">
+                <div class="chapter-number">九</div>
+                <h2 class="chapter-title">管理自己的五个维度</h2>
+
+                <div class="highlight-box">
+                    <div class="title">核心观点</div>
+                    <div class="description">管理自己是管理所有的根基，能把自己安顿好是真功夫</div>
+                </div>
+
+                <ul class="content-list">
+                    <li><strong>把时间管理好</strong> — 有时间且能用好时间</li>
+                    <li><strong>把自己的经验管理好</strong> — 知识经验沉淀下来</li>
+                    <li><strong>把自己的身体管理好</strong></li>
+                    <li><strong>把情绪管理好</strong> — 自信且从容</li>
+                    <li><strong>把自己的成长管理好</strong></li>
+                </ul>
+
+                <p>只有管理好自己，才能更好地管理他人和团队。自律是管理者最重要的品质之一。</p>
+            </section>
+
+            <!-- Chapter 10 -->
+            <section class="chapter animate-on-scroll" id="chapter10">
+                <div class="chapter-number">十</div>
+                <h2 class="chapter-title">核心工具与方法</h2>
+
+                <h3 class="section-title">长善救失的操作方法</h3>
+                <ol class="content-list" style="counter-reset: item;">
+                    <li style="padding-left: 2rem; counter-increment: item;"><strong>立马改善：</strong>帮他取得一次小成功，给确认和鼓励</li>
+                    <li style="padding-left: 2rem; counter-increment: item;"><strong>缺少耐心是最大的障碍</strong></li>
+                </ol>
+
+                <h3 class="section-title">批评与奖励的原则</h3>
+                <p>发心的目的只有一个：让他好好奋斗</p>
+
+                <h3 class="section-title">打动人心的改善行动</h3>
+                <ul class="content-list">
+                    <li>重新关注流程执行情况</li>
+                    <li>流程与体系是管理者成果</li>
+                </ul>
+
+                <div class="quote-box">
+                    <strong>关键洞见：</strong><br>
+                    管理的艺术在于平衡"长善"与"救失"，既要认可员工的优点并给予发展空间，也要及时指出问题并帮助改进。
+                </div>
+            </section>
+
+            <!-- Course Summary -->
+            <section class="summary-box animate-on-scroll">
+                <h2 class="summary-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22,4 12,14.01 9,11.01"/>
+                    </svg>
+                    课程总结
+                </h2>
+                <p style="margin-bottom: 1.5rem; opacity: 0.9;">
+                    管理者的角色认知是一个从"做事"到"带人"、从"带团队"到"建组织"的持续跃升过程。
+                </p>
+                <p style="margin-bottom: 1rem;"><strong>核心在于：</strong></p>
+                <ul class="summary-list">
+                    <li>自我管理的根基 — 做好自己才能影响他人</li>
+                    <li>君亲师的角色平衡 — 领导、关爱、教导缺一不可</li>
+                    <li>沟通-关系-自我三大跃升的支撑 — 持续修炼不断提升</li>
+                </ul>
+            </section>
+        </article>
+
+        <!-- Table of Contents -->
+        <aside class="toc">
+            <h3 class="toc-title">课程目录</h3>
+            <ul class="toc-list">
+                <li class="toc-item"><a href="#chapter1" class="toc-link">一、不同发展阶段管理者的角色认知</a></li>
+                <li class="toc-item"><a href="#chapter2" class="toc-link">二、管理者的核心素养</a></li>
+                <li class="toc-item"><a href="#chapter3" class="toc-link">三、管理者的进阶路径</a></li>
+                <li class="toc-item"><a href="#chapter4" class="toc-link">四、管理者的三大角色定位：君、亲、师</a></li>
+                <li class="toc-item"><a href="#chapter5" class="toc-link">五、管理者的三大作风</a></li>
+                <li class="toc-item"><a href="#chapter6" class="toc-link">六、管理者的四大核心责任</a></li>
+                <li class="toc-item"><a href="#chapter7" class="toc-link">七、责任跃升的三个支撑</a></li>
+                <li class="toc-item"><a href="#chapter8" class="toc-link">八、关键理念与金句</a></li>
+                <li class="toc-item"><a href="#chapter9" class="toc-link">九、管理自己的五个维度</a></li>
+                <li class="toc-item"><a href="#chapter10" class="toc-link">十、核心工具与方法</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 20L20 12L28 20L20 28L12 20Z" fill="currentColor"/>
+                    <circle cx="20" cy="20" r="4" fill="currentColor"/>
+                </svg>
+                <span>方太学校</span>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html">首页</a>
+                <a href="index.html">课程学习</a>
+                <a href="../index.html#courses">全部课程</a>
+                <a href="../index.html#about">关于我们</a>
+            </div>
+            <p class="footer-tagline">从管理自己到管理组织——管理者的进阶之路</p>
+            <p class="footer-copyright">© 2026 方太学校. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
-      // 添加自我管理部分连接线
-      document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-          const svgContainer = document.querySelector('svg[viewBox="0 0 800 500"]');
-          if (svgContainer) {
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', '400');
-            line.setAttribute('y1', '250');
-            line.setAttribute('x2', '400');
-            line.setAttribute('y2', '80');
-            line.setAttribute('stroke', 'url(#line-gradient)');
-            line.setAttribute('stroke-width', '2');
-            line.setAttribute('stroke-dasharray', '5 5');
-            line.setAttribute('opacity', '0.3');
-            svgContainer.insertBefore(line, svgContainer.firstChild);
-          }
-        }, 1000);
-      });
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active TOC link based on scroll position
+        const sections = document.querySelectorAll('.chapter');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for TOC links
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
-  </body>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.inland-security-footer {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tooltip-container {
+  position: relative;
+}
+
+.trigger-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.minimax-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 300;
+  color: #adadad;
+  text-decoration: none;
+}
+
+.minimax-link:visited {
+  color: #adadad;
+}
+
+.minimax-link:hover {
+  color: #666666;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  padding-bottom: 16px; /* 8px 内容间距 + 8px 用于鼠标移动的透明区域 */
+  font-size: 12px;
+  line-height: 17px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: #171717;
+}
+
+/* 创建透明的连接区域，让鼠标可以平滑移动到 tooltip */
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+.tooltip-container:hover .tooltip-content {
+  display: flex;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.beian-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #171717;
+}
+
+.beian-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 2px;
+}
+
+.underline-text {
+  color: #171717;
+  text-decoration: underline;
+}
+
+.underline-text:hover {
+  color: #000000;
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .trigger-content {
+    background-color: transparent;
+  }
+
+  .minimax-link,
+  .minimax-link:visited {
+    color: #666666;
+  }
+
+  .minimax-link:hover {
+    color: #adadad;
+  }
+
+  .tooltip-content {
+    background-color: #262626;
+    color: #ededed;
+  }
+
+  .beian-link,
+  .underline-text {
+    color: #ededed;
+  }
+
+  .underline-text:hover {
+    color: #ffffff;
+  }
+}
+
+</style>
+<div class="inland-security-footer">
+  <div class="tooltip-container">
+    <div class="trigger-content">
+      <a href="https://www.minimaxi.com/" target="_blank" rel="noreferrer" class="minimax-link">
+        <span>© 2026 MiniMax</span>
+      </a>
+    </div>
+    <div class="tooltip-content">
+      <section class="info-section">
+        <span>上海稀宇科技有限公司</span>
+      </section>
+
+      <section class="info-section">
+        <a class="beian-link" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402010179" target="_blank" rel="noreferrer">
+          <img alt="hailuo-beian-icon" src="https://cdn.hailuoai.com/hailuo-video-web/public_assets/223037d3-79fd-4db0-a456-749f38a6a14b.png" class="beian-icon">
+          <span class="underline-text">沪公网安备31010402010179号</span>
+        </a>
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="underline-text">
+          沪ICP备2023003282号-38
+        </a>
+      </section>
+
+      <section class="info-section">
+        <span>模型名称：MiniMax</span>
+        <span>备案号：Shanghai-MiniMax-202505230046</span>
+      </section>
+
+      <section class="info-section">
+        <a href="https://agent.minimaxi.com/doc/zh/terms-of-service.html" target="_blank" rel="noreferrer" class="underline-text">
+          用户协议
+        </a>
+        <a href="https://agent.minimaxi.com/doc/zh/privacy-policy.html" target="_blank" rel="noreferrer" class="underline-text">
+          隐私政策
+        </a>
+      </section>
+    </div>
+  </div>
+</div>
+
+</body>
 </html>
